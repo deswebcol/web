@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import siteConfig, { WHATSAPP_URL, EMAIL_URL } from './config.js';
 import {
   ArrowDownRight, ArrowRight, ArrowUpRight, Check, ChevronDown,
   Code2, Layers3, Menu, MessageCircle, MonitorSmartphone, Workflow, X,
   Sparkles, Boxes, Gauge, ShieldCheck
 } from 'lucide-react';
 
-const WHATSAPP = 'https://wa.me/573134373474';
-const EMAIL = 'mailto:contacto@desweb.cloud';
+const WHATSAPP = WHATSAPP_URL;
+const EMAIL = EMAIL_URL;
 
 const services = [
   {
@@ -70,9 +71,9 @@ const faqs = [
 ];
 
 function Brand({ light = false }) {
-  return <a className={`brand ${light ? 'brand-light' : ''}`} href="#inicio" aria-label="Desweb, inicio">
+  return <a className={`brand ${light ? 'brand-light' : ''}`} href="#inicio" aria-label={`${siteConfig.brandName}, inicio`}>
     <span className="brand-symbol"><span /><span /><span /></span>
-    <span>desweb<span className="brand-dot">.</span></span>
+    <span>{siteConfig.brandName.toLowerCase()}<span className="brand-dot">.</span></span>
   </a>;
 }
 
@@ -224,14 +225,14 @@ function App() {
             <h2>¿Qué te gustaría<br /><span>hacer posible?</span></h2>
             <p>Cuéntanos qué quieres mejorar. Juntos podemos encontrar una forma más inteligente de hacerlo.</p>
             <div className="contact-actions"><a className="button button-lime" href={WHATSAPP} target="_blank" rel="noreferrer">Hablemos por WhatsApp <ArrowUpRight size={18} /></a><a className="button button-outline" href={EMAIL}>Escríbenos un correo <ArrowUpRight size={18} /></a></div>
-            <div className="contact-foot"><span>DESWEB · SOLUCIONES DIGITALES</span><span>Colombia · Trabajamos contigo donde estés</span></div>
+            <div className="contact-foot"><span>DESWEB · SOLUCIONES DIGITALES</span><span>{siteConfig.countryLine}</span></div>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
         <div className="container footer-top"><Brand /><p>Ideas claras. Tecnología útil.<br />Soluciones digitales para avanzar.</p><a href="#inicio" className="back-top">Volver arriba <ArrowUpRight size={15} /></a></div>
-        <div className="container footer-bottom"><span>© {new Date().getFullYear()} Desweb. Todos los derechos reservados.</span><div><a href="mailto:contacto@desweb.cloud">contacto@desweb.cloud</a><a href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a></div></div>
+        <div className="container footer-bottom"><span>© {new Date().getFullYear()} Desweb. Todos los derechos reservados.</span><div><a href={EMAIL}>{siteConfig.email}</a><a href={WHATSAPP} target="_blank" rel="noreferrer">WhatsApp</a></div></div>
       </footer>
     </>
   );
